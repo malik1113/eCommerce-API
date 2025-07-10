@@ -20,9 +20,9 @@ const getAllCart = async () => {
     }
 }
 
-const deleteOrder = async (orderId) => {
+const deleteCart = async (orderId) => {
     try {
-        await Customer.findByIdAndDelete(orderId)
+        await ShoppingCart.findByIdAndDelete(orderId)
         return message
     } catch (error) {
         throw error
@@ -34,5 +34,5 @@ const deleteOrder = async (orderId) => {
 module.exports = {
     createShoppingCart,
     getAllCart,
-    deleteOrder
+    deleteCart
 }

@@ -19,7 +19,22 @@ const getAllCart = async () => {
         throw error
     }
 }
-
+const updateShoppingCart = async (productId, data) => {
+    try {
+        const updatedShoppingCart = await ShoppingCart.findByIdAndUpdate(productId, data, {new: true})  // you have to or it won't return updated data
+        return updatedShoppingCart;
+    } catch (error) {
+        throw error
+    }
+}
+const clearCart = async () => {
+    try {
+        const clearingCart = await ShoppingCart.findAndDelete()
+        return clearingCart
+    } catch (error) {
+        throw error.message
+    }
+}
 const deleteCart = async (orderId) => {
     try {
         await ShoppingCart.findByIdAndDelete(orderId)
@@ -34,5 +49,7 @@ const deleteCart = async (orderId) => {
 module.exports = {
     createShoppingCart,
     getAllCart,
-    deleteCart
+    deleteCart,
+    updateShoppingCart,
+    clearCart
 }
